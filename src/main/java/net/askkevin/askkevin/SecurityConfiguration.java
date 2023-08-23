@@ -1,0 +1,103 @@
+package net.askkevin.askkevin;
+
+import jakarta.servlet.http.HttpSession;
+import net.askkevin.askkevin.services.UserDetailsLoader;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfiguration {
+
+    private UserDetailsLoader usersLoader;
+
+    public SecurityConfiguration(UserDetailsLoader usersLoader) {
+        this.usersLoader = usersLoader;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                /* Login configuration */
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/search", true) // user's home page, it can be any URL
+                .permitAll() // Anyone can go to the login page
+                .and()
+
+                .formLogin()
+                .loginPage("/login/{id}")
+                .successHandler((httpServletRequest, httpServletResponse, authentication) -> {
+                    HttpSession session = httpServletRequest.getSession();
+                    Long recipeId = (Long) session.getAttribute("recipeId");
+                    if (recipeId != null) {
+                        session.removeAttribute("recipeId");
+                        httpServletResponse.sendRedirect("/recipe/" + recipeId);
+                    } else {
+                        httpServletResponse.sendRedirect("/search");
+                    }
+                })
+                .permitAll()
+
+
+                /* Logout configuration */
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login") // append a query string value
+
+                /* Pages that require authentication */
+                .and()
+                .authorizeHttpRequests()
+                .requestMatchers(
+
+                        "/users/profile", // only authenticated users can create posts
+                        "/user", // only authenticated users can view user profile
+                        "/user/{id}/uc", // only authenticated users can view user profile
+                        "/user/dpl", // only authenticated users can remove ingredients list
+                        "/user/dgl", // only authenticated users can remove ingredients list
+                        "/user/egl", // only authenticated users can email ingredients list
+                        "/user/tgl", // only authenticated users can text ingredients list
+                        "/user/{id}/dpi", // only authenticated users can remove ingredients
+                        "/user/{id}/dgi", // only authenticated users can remove ingredients
+                        "/user/{id}/dhr", // only authenticated users can remove hidden recipes
+                        "/user/{id}/afr", // only authenticated users can add favorite recipes
+                        "/user/{id}/ahr", // only authenticated users can add hidden recipes
+                        "/recipe/{id}/ari", // only authenticated users can add recipes ingredients to grocery list
+                        "/recipe/{id}", // only authenticated users can view recipe details
+                        "/user/addItemPantry", // only authenticated users can add ingredients
+                        "/user/addItemGrocery",
+                        "/search",
+                        "/recipe/{id}/ari",
+                        "/recipe/{id}"// only authenticated users can add ingredients
+                )
+                .authenticated()
+
+                /* Pages that can be viewed without having to log in */
+                .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/", "/login", "/login/{id}", "/sign-up", "/css/**", "/img/**", "/js/**","/AboutUs","/error") // anyone can see the home and the posts pages
+
+                .permitAll()
+        ;
+        return http.build();
+    }
+
+}
+
