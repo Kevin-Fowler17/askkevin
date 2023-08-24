@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partials/partials :: head">
+    <meta charset="UTF-8">
+    <title id="pageTitle">Registration</title>
+</head>
+<body>
+
+<nav th:insert="partials/partials :: navbar"></nav>
+
+<div class="container-fluid content">
+    <div class="row">
+        <div class="mx-auto col-10 col-md-8 col-lg-6 p-3">
+            <h1>Create an account</h1>
+            <h4>Please fill in your information.</h4>
+            <form class="form-example p-2" th:action="@{/register}" method="post" th:object="${user}">
+
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group has-validation">
+                        <input id="username" th:class="${userExists} ? 'form-control is-invalid' : 'form-control'" th:field="*{username}" placeholder="Username" required/>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Username already exists.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-group has-validation">
+                        <input id="email" type="text" th:class="${userEmailExists} ? 'form-control is-invalid' : 'form-control'" th:field="*{email}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="example@domain.com" required/>
+                        <div id="validationServerEmailFeedback" class="invalid-feedback">
+                            Email address already exists.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="password-input" class="form-label">Password</label>
+                        <div class="input-group d-flex">
+                            <input type="password" class="form-control rounded mt-1" th:field="*{password}" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" placeholder="Type your password" id="password-input" required/>
+                            <div class="valid-feedback">Good</div>
+                            <div class="invalid-feedback">Wrong</div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 mt-4 mt-xxl-0 w-auto h-auto">
+
+                        <div class="alert px-4 py-3 mb-0 d-none" role="alert" data-mdb-color="warning" id="password-alert">
+                            <ul class="list-unstyled mb-0">
+                                <li class="requirements leng">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    <i class="fas fa-times text-danger me-3"></i>
+                                    Your password must have at least 8 chars</li>
+                                <li class="requirements big-letter">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    <i class="fas fa-times text-danger me-3"></i>
+                                    Your password must have at least 1 big letter.</li>
+                                <li class="requirements num">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    <i class="fas fa-times text-danger me-3"></i>
+                                    Your password must have at least 1 number.</li>
+                                <li class="requirements special-char">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    <i class="fas fa-times text-danger me-3"></i>
+                                    Your password must have at least 1 special char.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password" class="form-label">Confirm password</label>
+                    <input id="confirm_password" class="form-control" placeholder="Confirm password" type="password"required/>
+                </div>
+
+                <input value="Submit" type="submit" class="btn btn-primary btn-customized mt-4"/>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="partials/partials :: footer"></footer>
+
+<script th:src="@{/js/password-validation.js}"></script>
+
+<script>
+    var password = document.getElementById("password-input")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+        if(password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+</body>
+</html>
