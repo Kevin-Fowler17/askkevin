@@ -1,8 +1,8 @@
 package net.askkevin.askkevin.controllers;
 
-import jakarta.servlet.http.HttpSession;
+import net.askkevin.askkevin.models.User;
 import net.askkevin.askkevin.repositories.UserRepository;
-import org.springframework.security.core.userdetails.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

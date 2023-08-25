@@ -1,8 +1,8 @@
 package net.askkevin.askkevin.repositories;
 
+import net.askkevin.askkevin.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.security.core.userdetails.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
