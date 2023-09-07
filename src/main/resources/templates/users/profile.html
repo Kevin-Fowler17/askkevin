@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
   <header th:insert="partials/partials :: header" />
-  <title>Survey Results</title>
+  <title>Profile</title>
 </head>
 <body>
 
 <nav th:replace="partials/partials :: navbar" />
 
 <h1>Profile Page</h1>
+
+<a class="nav-link active" th:href="@{/insurance}">Insurance</a>
 
 <footer th:replace="partials/partials.html :: footer" />
 

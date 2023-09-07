@@ -50,11 +50,11 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers(
                         "/user", // only authenticated users can see their profile
-                        "/user/insurance", // only authenticated users can edit their insurance
-                        "/user/doctors", // only authenticated users can edit their doctors
-                        "/user/surgeries", // only authenticated users can edit their surgeries
-                        "/user/conditions", // only authenticated users can edit their conditions
-                        "/user/prescriptions" // only authenticated users can edit their prescriptions
+                        "/user/{id}/insurance", // only authenticated users can edit their insurance
+                        "/user/{id}/doctors", // only authenticated users can edit their doctors
+                        "/user/{id}/surgeries", // only authenticated users can edit their surgeries
+                        "/user/{id}/conditions", // only authenticated users can edit their conditions
+                        "/user/{id}/prescriptions" // only authenticated users can edit their prescriptions
                 )
                 .authenticated()
 

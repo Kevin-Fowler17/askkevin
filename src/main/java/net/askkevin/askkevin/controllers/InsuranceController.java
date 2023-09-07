@@ -1,38 +1,33 @@
 package net.askkevin.askkevin.controllers;
 
-import net.askkevin.askkevin.models.User;
-
-import net.askkevin.askkevin.repositories.*;
-
 import lombok.AllArgsConstructor;
-
+import net.askkevin.askkevin.models.User;
+import net.askkevin.askkevin.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @AllArgsConstructor
 @Controller
-public class ProfileController {
+public class InsuranceController {
 
     private final UserRepository userDao;
 
-    @GetMapping("/user")
+    @GetMapping("/insurance")
     @Transactional
-    public String showProfileForm(Model model) {
+    public String showInsuranceForm(Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (loggedInUser == null) {
-            return "/login";
+            return "/user";
         }
 
         User user = userDao.getReferenceById(loggedInUser.getId());
 
-        return "users/profile";
+        return "users/insurance";
     }
 
 }
