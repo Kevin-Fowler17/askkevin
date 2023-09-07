@@ -49,20 +49,19 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/",
-                        "/profile", // only authenticated users can see their profile
-                        "/profile/insurance", // only authenticated users can edit their insurance
-                        "/profile/doctors", // only authenticated users can edit their doctors
-                        "/profile/surgeries", // only authenticated users can edit their surgeries
-                        "/profile/conditions", // only authenticated users can edit their conditions
-                        "/profile/prescriptions" // only authenticated users can edit their prescriptions
+                        "/user", // only authenticated users can see their profile
+                        "/user/insurance", // only authenticated users can edit their insurance
+                        "/user/doctors", // only authenticated users can edit their doctors
+                        "/user/surgeries", // only authenticated users can edit their surgeries
+                        "/user/conditions", // only authenticated users can edit their conditions
+                        "/user/prescriptions" // only authenticated users can edit their prescriptions
                 )
                 .authenticated()
 
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/register",  "/audio/**", "/css/**", "/img/**", "/js/**") // anyone can see the home and the posts pages
+                .requestMatchers("/", "/register",  "/audio/**", "/css/**", "/img/**", "/js/**") // anyone can see the home and the posts pages
                 .permitAll()
         ;
         return http.build();
