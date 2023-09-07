@@ -49,11 +49,13 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/"
-//                        "/results", // only authenticated users can create posts
-//                        "/posts/{id}/edit", // only authenticated users can edit posts
-//                        "/posts/{id}/delete", // only authenticated users can edit posts
-//                        "/posts/myblogs" // only authenticated users can edit posts
+                        "/",
+                        "/profile", // only authenticated users can see their profile
+                        "/profile/insurance", // only authenticated users can edit their insurance
+                        "/profile/doctors", // only authenticated users can edit their doctors
+                        "/profile/surgeries", // only authenticated users can edit their surgeries
+                        "/profile/conditions", // only authenticated users can edit their conditions
+                        "/profile/prescriptions" // only authenticated users can edit their prescriptions
                 )
                 .authenticated()
 
