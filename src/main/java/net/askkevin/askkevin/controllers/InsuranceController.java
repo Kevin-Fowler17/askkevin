@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @AllArgsConstructor
 @Controller
@@ -15,9 +16,9 @@ public class InsuranceController {
 
     private final UserRepository userDao;
 
-    @GetMapping("/insurance")
+    @GetMapping("/{id}/insurance")
     @Transactional
-    public String showInsuranceForm(Model model) {
+    public String showInsuranceForm(@PathVariable long id, Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 

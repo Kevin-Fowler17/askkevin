@@ -51,6 +51,7 @@ public class SecurityConfiguration {
                 .requestMatchers(
                         "/user", // only authenticated users can see their profile
                         "/user/{id}/insurance", // only authenticated users can edit their insurance
+                        "/user/insurance", // only authenticated users can edit their insurance
                         "/user/{id}/doctors", // only authenticated users can edit their doctors
                         "/user/{id}/surgeries", // only authenticated users can edit their surgeries
                         "/user/{id}/conditions", // only authenticated users can edit their conditions
