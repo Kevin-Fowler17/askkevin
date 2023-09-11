@@ -11,6 +11,10 @@
 <h1>Profile Page</h1>
 
 <a class="nav-link active" th:href="'/user/' + @{${user.id} + '/insurance'}">Insurance</a>
+<a class="nav-link active" th:href="'/user/' + @{${user.id} + '/doctors'}">Doctors</a>
+<a class="nav-link active" th:href="'/user/' + @{${user.id} + '/prescriptions'}">Prescriptions</a>
+<a class="nav-link active" th:href="'/user/' + @{${user.id} + '/conditions'}">Conditions</a>
+<a class="nav-link active" th:href="'/user/' + @{${user.id} + '/surgeries'}">Surgeries</a>
 
 <footer th:replace="partials/partials.html :: footer" />
 
