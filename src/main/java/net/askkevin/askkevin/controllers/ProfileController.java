@@ -20,7 +20,7 @@ public class ProfileController {
 
     private final UserRepository userDao;
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/user")
     public String showProfileForm(Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -32,18 +32,12 @@ public class ProfileController {
             return "/login";
         }
 
-        User user = userDao.findById(id).get();
+        User user = userDao.getReferenceById(loggedInUser.getId());
         model.addAttribute("user", user);
 
-
-//        User user = userDao.getReferenceById(loggedInUser.getId());
-//        User user = userDao.findById(id).get();
-//        model.addAttribute("user", user);
-
-
-
-
+        System.out.println("*********************");
         System.out.println(user);
+        System.out.println("*********************");
 
         return "users/profile";
     }
