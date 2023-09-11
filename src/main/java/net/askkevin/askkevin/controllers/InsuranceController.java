@@ -16,7 +16,7 @@ public class InsuranceController {
 
     private final UserRepository userDao;
 
-    @GetMapping("/{id}/insurance")
+    @GetMapping("/user/{id}/insurance")
     @Transactional
     public String showInsuranceForm(@PathVariable long id, Model model) {
 
