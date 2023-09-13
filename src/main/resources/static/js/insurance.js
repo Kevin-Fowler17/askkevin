@@ -5,15 +5,18 @@
     // This is the class where the questions will be displayed in the html
     const displayQ1 = document.getElementsByClassName("q1")[0];
     const displayQ2 = document.getElementsByClassName("q2")[0];
+    const displayQ3 = document.getElementsByClassName("q3")[0];
 
     // Arrays to store the variable names for each question
     let q1Layout = [];
     let q2Layout = [];
+    let q3Layout = [];
 
     // Array(s) to store the answer options for each question
     let questionText = [
         {'value': 1, 'label': 'What is your primary insurance company?'},
-        {'value': 2, 'label': 'What is your secondary insurance company??'}
+        {'value': 2, 'label': 'Do you have a secondary insurance company?'},
+        {'value': 3, 'label': 'What is your secondary insurance company?'}
     ]
     let insuranceCompanies = [
         {'value': 1, 'label': 'Anthem Inc.'},
@@ -41,25 +44,38 @@
         {'value': 23, 'label': 'Point32Health'},
         {'value': 24, 'label': 'United Health'},
         {'value': 25, 'label': 'UPMC Health System'}
+    ]
+
+    let yesNo = [
+        {'value': 1, 'label': 'Yes'},
+        {'value': 2, 'label': 'No'}
     ];
 
     let workingArray = [];
 
     renderQ1(0);
     renderQ2(1);
+    renderQ3(2);
 
     function renderQ1(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q1Layout, insuranceCompanies, true, false, false);
         customizeHTMLLayoutForSRandMR(q1Layout, questionArrayPosition, workingArray,true);
-        addInputBoxForOther(q1Layout);
+        addInputBoxForOther(q1Layout, "q1os");
         appendElementsToDocForSRandMR(q1Layout, workingArray, displayQ1);
     }
 
     function renderQ2(questionArrayPosition) {
-        generateHTMLLayoutForSRandMR(q2Layout, insuranceCompanies, true, false, false);
+        generateHTMLLayoutForSRandMR(q2Layout, yesNo, false, false, false);
         customizeHTMLLayoutForSRandMR(q2Layout, questionArrayPosition, workingArray,true);
         addInputBoxForOther(q2Layout);
         appendElementsToDocForSRandMR(q2Layout, workingArray, displayQ2);
+    }
+
+    function renderQ3(questionArrayPosition) {
+        generateHTMLLayoutForSRandMR(q3Layout, insuranceCompanies, true, false, false);
+        customizeHTMLLayoutForSRandMR(q3Layout, questionArrayPosition, workingArray,true);
+        addInputBoxForOther(q3Layout, "q3os");
+        appendElementsToDocForSRandMR(q3Layout, workingArray, displayQ3);
     }
 
     function generateHTMLLayoutForSRandMR(layoutName, answerArray, otherOption, noneOption, refusedOption) {
@@ -133,7 +149,7 @@
         }
     }
 
-    function addInputBoxForOther(layoutName) {
+    function addInputBoxForOther(layoutName, textBoxID) {
 
         layoutName.forEach((element, index) => {
             if (element.textContent === "Other") {
@@ -141,6 +157,7 @@
                 // Create a new element to be inserted
                 let otherInputBox = document.createElement("input");
                 otherInputBox.setAttribute("type", "text");
+                otherInputBox.setAttribute("id", textBoxID);
 
                 // Insert the new element after the element with "Other"
                 layoutName[index].appendChild(otherInputBox);
