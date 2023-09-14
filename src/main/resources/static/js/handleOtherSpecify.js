@@ -15,4 +15,6 @@ function toggleOtherTextBox(radioSelector, otherOptionSelector, otherTextBoxSele
 }
 
 toggleOtherTextBox('input[name="q1"]', '#radio_1_25', '#q1os');
-toggleOtherTextBox('input[name="q3"]', '#radio_3_25', '#q3os');
+toggleOtherTextBox('input[name="q2"]', '#radio_2_5', '#q2os');
+toggleOtherTextBox('input[name="q5"]', '#radio_5_25', '#q5os');
+toggleOtherTextBox('input[name="q6"]', '#radio_6_5', '#q6os');
