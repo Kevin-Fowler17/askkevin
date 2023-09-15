@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="partial/partials :: head">
+    <meta charset="UTF-8">
+    <title id="pageTitle">About Us</title>
+</head>
+
+<body>
+<style>
+    .card-img-top{
+        width: 65%;
+        border-radius: 50%;
+        margin: auto 0;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+    .card{
+        padding: 1.5em .5em .5em;
+        border-radius: 2em;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    }
+</style>
+<nav th:insert="partial/partials :: navbar"></nav>
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img th:src="@{/img/milkChocolate.png}" alt="milkChocolate" class="d-block mx-lg-auto img-fluid"  width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3">About Out-of-Milk</h1>
+            <p class="lead">Outofmilk is a Grocery List is a website that helps you make
+                your grocery list in a more organized and convenient way. It allows you to create
+                a list and categorize your items. You can also search for recipes and add the
+                ingredients needed for those recipes directly to your list. If you have some
+                ingredients at home already, you can also add them to a pantry tracker to
+                help you avoid buying duplicates. The website may also have some extra features,
+                like showing pricing and nutrition information, letting users share their own
+                recipes.</p>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-md-2 g-4 mx-4">
+    <div class="col d-flex align-items-stretch">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 pt-5">
+                    <img class="card-img-top" th:src="@{/img/kevin.jpg}" alt="">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Kevin Fowler</h5>
+                        <p class="card-text text-start">As a self-motivated software developer, I have a keen eye for detail and a track record of delivering high-quality results on numerous projects. I possess a unique ability to balance my technical skills with strong interpersonal abilities, making me a valuable asset in cross-functional teams. My knack for fast and efficient problem-solving allows me to consistently deliver results in a timely manner.</p>
+                        <div class="card-text">
+                            <a href="https://github.com/mcampbell379" style="color:#E98074"><i class="fa-brands fa-github fa-lg" style="margin: 0% 2%;"></i></a>
+                            <a href="https://www.linkedin.com/in/mitchelldcampbell/" style="color: #E98074"><i class="fa-brands fa-linkedin fa-lg" style="margin: 0% 2%;"></i></a>
+                            <a href="" style="color: #E98074"><i class="fa-solid fa-graduation-cap fa-lg" style="margin: 0% 2%;"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer" th:insert="partial/partials :: footer"></footer>
+</body>
+</html>
