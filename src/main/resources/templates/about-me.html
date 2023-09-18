@@ -1,41 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="partial/partials :: head">
-    <meta charset="UTF-8">
-    <title id="pageTitle">About Us</title>
+<html lang="en">
+<head>
+    <header th:insert="partials/partials :: header" />
+    <title>About Me</title>
 </head>
-
 <body>
-<style>
-    .card-img-top{
-        width: 65%;
-        border-radius: 50%;
-        margin: auto 0;
-        box-shadow: 0 0 10px rgba(0,0,0,.2);
-    }
-    .card{
-        padding: 1.5em .5em .5em;
-        border-radius: 2em;
-        text-align: center;
-        box-shadow: 0 5px 10px rgba(0,0,0,.2);
-    }
-</style>
-<nav th:insert="partial/partials :: navbar"></nav>
+
+<nav th:replace="partials/partials :: navbar" />
+
 <div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-            <img th:src="@{/img/milkChocolate.png}" alt="milkChocolate" class="d-block mx-lg-auto img-fluid"  width="700" height="500" loading="lazy">
-        </div>
+    <div class="row align-items-center g-5 py-5">
         <div class="col-lg-6">
-            <h1 class="display-5 fw-bold lh-1 mb-3">About Out-of-Milk</h1>
-            <p class="lead">Outofmilk is a Grocery List is a website that helps you make
-                your grocery list in a more organized and convenient way. It allows you to create
-                a list and categorize your items. You can also search for recipes and add the
-                ingredients needed for those recipes directly to your list. If you have some
-                ingredients at home already, you can also add them to a pantry tracker to
-                help you avoid buying duplicates. The website may also have some extra features,
-                like showing pricing and nutrition information, letting users share their own
-                recipes.</p>
+            <h1 class="display-5 fw-bold lh-1 mb-3">About Project Name</h1>
+            <p class="lead">Project description goes here</p>
         </div>
     </div>
 </div>
@@ -61,6 +38,8 @@
         </div>
     </div>
 </div>
-<footer class="footer" th:insert="partial/partials :: footer"></footer>
+
+<footer th:replace="partials/partials.html :: footer" />
+
 </body>
 </html>
