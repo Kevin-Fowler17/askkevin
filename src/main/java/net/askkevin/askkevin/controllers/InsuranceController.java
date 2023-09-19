@@ -38,8 +38,12 @@ public class InsuranceController {
         return "users/insurance";
     }
 
-    @PostMapping(path = "/user/insurance-info")
+    @PostMapping(path = "/user/{id}/insurance")
     public String submitInsuranceInfo(@ModelAttribute Insurance insurance, Model model) {
+
+        System.out.println("***************************");
+        System.out.println("We got into Post Mapping!!!");
+        System.out.println("***************************");
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -47,9 +51,21 @@ public class InsuranceController {
 
         insurance.setUser(user);
 
+        System.out.println("***************************");
+        System.out.println(user);
+        System.out.println("***************************");
+
+        System.out.println("***************************");
+        System.out.println(insurance);
+        System.out.println("***************************");
+
         insuranceDao.save(insurance);
 
-        return "redirect:/users/profile";
+        System.out.println("***************************");
+        System.out.println("*********** 3 *************");
+        System.out.println("***************************");
+
+        return "redirect:/user";
     }
 
 

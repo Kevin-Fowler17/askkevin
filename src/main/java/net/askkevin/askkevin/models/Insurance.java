@@ -20,13 +20,13 @@ public class Insurance {
     @Column(nullable = false, columnDefinition = "INT(10)")
     private long q1;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String q1os;
 
     @Column(nullable = false, columnDefinition = "INT(10)")
     private long q2;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String q2os;
 
     @Column(nullable = false)
@@ -35,19 +35,19 @@ public class Insurance {
     @Column(nullable = false, columnDefinition = "INT(10)")
     private long q4;
 
-    @Column(nullable = false, columnDefinition = "INT(10)")
+    @Column(nullable = true, columnDefinition = "INT(10)")
     private long q5;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String q5os;
 
-    @Column(nullable = false, columnDefinition = "INT(10)")
+    @Column(nullable = true, columnDefinition = "INT(10)")
     private long q6;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String q6os;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String q7;
 
     @OneToOne
