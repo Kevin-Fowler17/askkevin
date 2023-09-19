@@ -203,6 +203,7 @@
             layoutName[layoutStartingPosition + 1].setAttribute("id",questionType + "_" + questionText[questionArrayPosition].value + "_" + i);
             layoutName[layoutStartingPosition + 1].setAttribute("name","q" + questionText[questionArrayPosition].value)
             layoutName[layoutStartingPosition + 1].setAttribute("value", answerArray[i].value);
+            layoutName[layoutStartingPosition + 1].setAttribute("th:field", "*{q" + questionText[questionArrayPosition].value + "}")
 
             layoutName[layoutStartingPosition + 2].className = "form-check-label";
             layoutName[layoutStartingPosition + 2].setAttribute("for",questionType + "_" + questionText[questionArrayPosition].value + "_" + i);
@@ -230,7 +231,9 @@
         layoutName[4].className = "form-textarea-input";
         layoutName[4].setAttribute("id","textarea_" + questionText[questionArrayPosition].value);
         layoutName[4].setAttribute("name","q" + questionText[questionArrayPosition].value);
-        layoutName[4].setAttribute('data-th-field', '*{q' + questionText[questionArrayPosition].value +'}');
+        // layoutName[4].setAttribute('data-th-field', '*{q' + questionText[questionArrayPosition].value +'}');
+        layoutName[4].setAttribute("th:field", "*{q" + questionText[questionArrayPosition].value + "}")
+
     }
 
     function addInputBoxForOther(layoutName, textBoxID) {
@@ -242,6 +245,7 @@
                 let otherInputBox = document.createElement("input");
                 otherInputBox.setAttribute("type", "text");
                 otherInputBox.setAttribute("id", textBoxID);
+                otherInputBox.setAttribute("th:field", "*{" + textBoxID + "}")
 
                 // Insert the new element after the element with "Other"
                 layoutName[index].appendChild(otherInputBox);
