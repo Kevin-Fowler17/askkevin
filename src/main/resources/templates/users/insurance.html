@@ -8,6 +8,10 @@
 
 <nav th:replace="partials/partials :: navbar" />
 
+
+<h1 th:text="${insurance.q1}"></h1>
+<h1 th:text="${insurance.q1 == 18}"></h1>
+
 <h1>Medical Insurance Page</h1>
 
 <form th:action="@{/user/} + ${id} + @{/insurance}" th:method="insurance" th:object="${insurance}">

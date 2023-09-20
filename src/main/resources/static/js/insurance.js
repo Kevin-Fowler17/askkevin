@@ -84,9 +84,14 @@
 
     function renderQ1(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q1Layout, insuranceCompanies, true, false, false);
+        console.log("Completed 1")
         customizeHTMLLayoutForSRandMR(q1Layout, questionArrayPosition, workingArray,true);
+        console.log("Completed 2")
         addInputBoxForOther(q1Layout, "q1os");
+        console.log("Completed 3")
         appendElementsToDocForSRandMR(q1Layout, workingArray, displayQ1);
+        console.log("Completed 4")
+        console.log(displayQ1)
     }
 
     function renderQ2(questionArrayPosition) {
@@ -140,7 +145,6 @@
         let surveyQuestion = document.createElement("div");
         let questionLabel = document.createElement("label");
         let divRadioGroup = document.createElement("div");
-        let divLoopCheckIfSelected = document.createElement("div");
 
         layoutName.push(surveyQuestion, questionLabel, divRadioGroup);
 
@@ -173,8 +177,7 @@
 
     function customizeHTMLLayoutForSRandMR(layoutName, questionArrayPosition, answerArray, singleType) {
 
-        // let layoutStartingPosition = 3;
-        let layoutStartingPosition = 4;
+        let layoutStartingPosition = 3;
         let groupType = "";
         let questionType = "";
 
@@ -196,8 +199,6 @@
         layoutName[2].setAttribute("class", groupType);
         layoutName[2].setAttribute("id", groupType + "_" + (questionArrayPosition + 1));
 
-        layoutName[3].setAttribute("th:each", "option : ${q" + questionText[questionArrayPosition].value + "Options}");
-
         for (let i = 0; i < answerArray.length; i++) {
 
             layoutName[layoutStartingPosition].className = "form-check pb-2";
@@ -205,9 +206,11 @@
             layoutName[layoutStartingPosition + 1].setAttribute("type", questionType);
             layoutName[layoutStartingPosition + 1].className = "form-check-input";
             layoutName[layoutStartingPosition + 1].setAttribute("id",questionType + "_" + questionText[questionArrayPosition].value + "_" + i);
-            layoutName[layoutStartingPosition + 1].setAttribute("name","q" + questionText[questionArrayPosition].value)
+            layoutName[layoutStartingPosition + 1].setAttribute("name","q" + questionText[questionArrayPosition].value);
             layoutName[layoutStartingPosition + 1].setAttribute("value", answerArray[i].value);
-            layoutName[layoutStartingPosition + 1].setAttribute("th:field", "*{q" + questionText[questionArrayPosition].value + "}")
+            layoutName[layoutStartingPosition + 1].setAttribute("th:field", "*{q" + questionText[questionArrayPosition].value + "}");
+            // layoutName[layoutStartingPosition + 1].setAttribute("th:checked", "${insurance.q" + questionText[questionArrayPosition].value + " == " + answerArray[i].value + "}");
+            layoutName[layoutStartingPosition + 1].setAttribute("th:checked", "${insurance ? true : " + answerArray[i].value + " == insurance.q" + questionText[questionArrayPosition].value + "}");
 
             layoutName[layoutStartingPosition + 2].className = "form-check-label";
             layoutName[layoutStartingPosition + 2].setAttribute("for",questionType + "_" + questionText[questionArrayPosition].value + "_" + i);
@@ -259,7 +262,7 @@
 
     function appendElementsToDocForSRandMR(layoutName, answerArray, displayQuestion) {
 
-        let layoutStartingPosition = 4;
+        let layoutStartingPosition = 3;
 
         for (let i = 0; i < answerArray.length; i++) {
             layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
@@ -272,7 +275,6 @@
 
         layoutName[0].appendChild(layoutName[1]);
         layoutName[0].appendChild(layoutName[2]);
-        layoutName[0].appendChild(layoutName[3]);
 
         displayQuestion.appendChild(layoutName[0]);
 
