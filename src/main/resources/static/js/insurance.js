@@ -140,6 +140,7 @@
         let surveyQuestion = document.createElement("div");
         let questionLabel = document.createElement("label");
         let divRadioGroup = document.createElement("div");
+        let divLoopCheckIfSelected = document.createElement("div");
 
         layoutName.push(surveyQuestion, questionLabel, divRadioGroup);
 
@@ -172,7 +173,8 @@
 
     function customizeHTMLLayoutForSRandMR(layoutName, questionArrayPosition, answerArray, singleType) {
 
-        let layoutStartingPosition = 3;
+        // let layoutStartingPosition = 3;
+        let layoutStartingPosition = 4;
         let groupType = "";
         let questionType = "";
 
@@ -193,6 +195,8 @@
         layoutName[2].className = "";
         layoutName[2].setAttribute("class", groupType);
         layoutName[2].setAttribute("id", groupType + "_" + (questionArrayPosition + 1));
+
+        layoutName[3].setAttribute("th:each", "option : ${q" + questionText[questionArrayPosition].value + "Options}");
 
         for (let i = 0; i < answerArray.length; i++) {
 
@@ -255,7 +259,7 @@
 
     function appendElementsToDocForSRandMR(layoutName, answerArray, displayQuestion) {
 
-        let layoutStartingPosition = 3;
+        let layoutStartingPosition = 4;
 
         for (let i = 0; i < answerArray.length; i++) {
             layoutName[layoutStartingPosition].appendChild(layoutName[layoutStartingPosition + 1]);
@@ -268,6 +272,7 @@
 
         layoutName[0].appendChild(layoutName[1]);
         layoutName[0].appendChild(layoutName[2]);
+        layoutName[0].appendChild(layoutName[3]);
 
         displayQuestion.appendChild(layoutName[0]);
 

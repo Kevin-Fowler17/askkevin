@@ -24,9 +24,6 @@ public class ProfileController {
     public String showProfileForm(Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("*********************");
-        System.out.println(loggedInUser);
-        System.out.println("*********************");
 
         if (loggedInUser == null) {
             return "/login";
@@ -34,10 +31,6 @@ public class ProfileController {
 
         User user = userDao.getReferenceById(loggedInUser.getId());
         model.addAttribute("user", user);
-
-        System.out.println("*********************");
-        System.out.println(user);
-        System.out.println("*********************");
 
         return "users/profile";
     }

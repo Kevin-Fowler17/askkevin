@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InsuranceRepository extends JpaRepository<Insurance, Long> {
 
-//    Insurance findByUserId(long user_id);
+    Insurance findByUserId(long user_id);
 
 }

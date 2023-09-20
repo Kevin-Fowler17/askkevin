@@ -33,7 +33,13 @@ public class InsuranceController {
 
         User user = userDao.getReferenceById(loggedInUser.getId());
 
-        model.addAttribute("insurance", new Insurance());
+        Insurance currentInsuranceSettings = insuranceDao.findByUserId(user.getId());
+
+        System.out.println("********************");
+        System.out.println(currentInsuranceSettings);
+        System.out.println("********************");
+
+        model.addAttribute("insurance", currentInsuranceSettings);
 
         return "users/insurance";
     }
@@ -49,25 +55,25 @@ public class InsuranceController {
 
         model.addAttribute("user", user);
 
+        System.out.println("******* BEFORE ********");
+        System.out.println(user);
+        System.out.println("***********************");
+
+        if (insurance.getQ4() == 2) {
+            insurance.setQ5(99);
+            insurance.setQ6(9);
+            insurance.setQ7("NA");
+        }
+
         insurance.setUser(user);
 
-        System.out.println("***************************");
+        System.out.println("******* AFTER *********");
         System.out.println(user);
-        System.out.println("***************************");
-
-        System.out.println("***************************");
-        System.out.println(insurance);
-        System.out.println("***************************");
+        System.out.println("***********************");
 
         insuranceDao.save(insurance);
 
-        System.out.println("***************************");
-        System.out.println("*********** 3 *************");
-        System.out.println("***************************");
-
         return "redirect:/user";
     }
-
-
 
 }
