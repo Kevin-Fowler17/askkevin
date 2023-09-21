@@ -84,13 +84,9 @@
 
     function renderQ1(questionArrayPosition) {
         generateHTMLLayoutForSRandMR(q1Layout, insuranceCompanies, true, false, false);
-        console.log("Completed 1")
         customizeHTMLLayoutForSRandMR(q1Layout, questionArrayPosition, workingArray,true);
-        console.log("Completed 2")
         addInputBoxForOther(q1Layout, "q1os");
-        console.log("Completed 3")
         appendElementsToDocForSRandMR(q1Layout, workingArray, displayQ1);
-        console.log("Completed 4")
         console.log(displayQ1)
     }
 
@@ -209,8 +205,8 @@
             layoutName[layoutStartingPosition + 1].setAttribute("name","q" + questionText[questionArrayPosition].value);
             layoutName[layoutStartingPosition + 1].setAttribute("value", answerArray[i].value);
             layoutName[layoutStartingPosition + 1].setAttribute("th:field", "*{q" + questionText[questionArrayPosition].value + "}");
-            // layoutName[layoutStartingPosition + 1].setAttribute("th:checked", "${insurance.q" + questionText[questionArrayPosition].value + " == " + answerArray[i].value + "}");
-            layoutName[layoutStartingPosition + 1].setAttribute("th:checked", "${insurance ? true : " + answerArray[i].value + " == insurance.q" + questionText[questionArrayPosition].value + "}");
+            // // layoutName[layoutStartingPosition + 1].setAttribute("th:checked", "${insurance.q" + questionText[questionArrayPosition].value + " == " + answerArray[i].value + "}");
+            // layoutName[layoutStartingPosition + 1].setAttribute("th:checked", "${insurance ? true : " + answerArray[i].value + " == insurance.q" + questionText[questionArrayPosition].value + "}");
 
             layoutName[layoutStartingPosition + 2].className = "form-check-label";
             layoutName[layoutStartingPosition + 2].setAttribute("for",questionType + "_" + questionText[questionArrayPosition].value + "_" + i);

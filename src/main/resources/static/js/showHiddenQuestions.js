@@ -26,9 +26,6 @@ function toggleQuestionVisibility(inputQuestion, showHideQuestion) {
 // Add change event listeners to all radio buttons with the same name
 let input = document.getElementsByName("q4");
 
-console.log("input: " + input)
-console.log("input length: " + input.length)
-
 for (let i = 0; i < input.length; i++) {
     input[i].addEventListener("change", function () {
         toggleQuestionVisibility("q4", "q5");
