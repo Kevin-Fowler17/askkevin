@@ -226,7 +226,7 @@
 
         layoutName[2].className = "";
         layoutName[2].setAttribute("class", "textarea");
-        layoutName[2].setAttribute("id", "textarea" + "_" + (questionArrayPosition + 1));
+        // layoutName[2].setAttribute("id", "textarea" + "_" + (questionArrayPosition + 1));
 
         layoutName[3].className = "form-textarea pb-2";
 

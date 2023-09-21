@@ -37,6 +37,10 @@ public class InsuranceController {
 
         model.addAttribute("insurance", currentInsuranceSettings);
 
+        System.out.println("******* curernt *******");
+        System.out.println(currentInsuranceSettings);
+        System.out.println("***********************");
+
         return "users/insurance";
     }
 
