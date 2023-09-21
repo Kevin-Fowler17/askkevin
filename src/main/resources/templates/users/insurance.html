@@ -8,10 +8,6 @@
 
 <nav th:replace="partials/partials :: navbar" />
 
-
-<h1 th:text="${insurance.q1}"></h1>
-<h1 th:text="${insurance.q1 == 18}"></h1>
-
 <h1>Medical Insurance Page</h1>
 
 <form th:action="@{/user/} + ${id} + @{/insurance}" th:method="insurance" th:object="${insurance}">
@@ -35,6 +31,7 @@
 <script th:src="@{/js/showHiddenQuestions.js}"></script>
 
 <script>
+  console.log("We got in!!!")
   let insuranceQ1Value = parseInt([[${insurance.q1}]]);
   let insuranceQ1osValue = [[${insurance.q1os}]];
   let insuranceQ2Value = parseInt([[${insurance.q2}]]);
@@ -48,19 +45,28 @@
   let insuranceQ7Value = [[${insurance.q7}]];
 
 
-  autofillQuestionsFromDB(1)
+  autofillClosedQuestionsFromDB(1, insuranceQ1Value)
+  // autofillOpenQuestionsFromDB("q1os", insuranceQ1osValue)
+  autofillClosedQuestionsFromDB(2, insuranceQ2Value)
+  // autofillOpenQuestionsFromDB("q2os", insuranceQ2osValue)
+  // autofillOpenQuestionsFromDB("q3", insuranceQ3Value)
+  autofillClosedQuestionsFromDB(4, insuranceQ4Value)
+  autofillClosedQuestionsFromDB(5, insuranceQ5Value)
+  // autofillOpenQuestionsFromDB("q5os", insuranceQ5osValue)
+  autofillClosedQuestionsFromDB(6, insuranceQ6Value)
+  // autofillOpenQuestionsFromDB("q6os", insuranceQ6osValue)
+  // autofillOpenQuestionsFromDB("q7", insuranceQ7Value)
 
-  function autofillQuestionsFromDB(questionNumber) {
-    document.getElementById("radio_" + questionNumber + "_" + questionNumber - 1).checked = true;
+  function autofillClosedQuestionsFromDB(questionNumber, questionValue) {
+    document.getElementById("radio_" + questionNumber + "_" + (questionValue - 1)).checked = true;
   }
 
-  console.log("radio_" + questionNumber + "_" + questionNumber - 1)
-
-
-    // if (insuranceQ1Value === 18) {
-    //   document.getElementById("radio_1_17").checked = true;
-    // }
-
+  // function autofillOpenQuestionsFromDB(questionId, questionValue) {
+  //   if (questionValue != "NA" && questionValue != null) {
+  //     let input = document.getElementById(questionId);
+  //     input.value = questionValue;
+  //   }
+  // }
 
 </script>
 

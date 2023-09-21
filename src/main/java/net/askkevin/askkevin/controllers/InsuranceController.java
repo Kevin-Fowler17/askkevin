@@ -35,10 +35,6 @@ public class InsuranceController {
 
         Insurance currentInsuranceSettings = insuranceDao.findByUserId(user.getId());
 
-        System.out.println("********************");
-        System.out.println(currentInsuranceSettings);
-        System.out.println("********************");
-
         model.addAttribute("insurance", currentInsuranceSettings);
 
         return "users/insurance";
@@ -47,17 +43,9 @@ public class InsuranceController {
     @PostMapping(path = "/user/{id}/insurance")
     public String submitInsuranceInfo(@ModelAttribute Insurance insurance, Model model) {
 
-        System.out.println("***************************");
-        System.out.println("We got into Post Mapping!!!");
-        System.out.println("***************************");
-
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         model.addAttribute("user", user);
-
-        System.out.println("******* BEFORE ********");
-        System.out.println(user);
-        System.out.println("***********************");
 
         if (insurance.getQ4() == 2) {
             insurance.setQ5(99);
