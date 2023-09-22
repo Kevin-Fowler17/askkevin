@@ -45,25 +45,49 @@ public class InsuranceController {
     }
 
     @PostMapping(path = "/user/{id}/insurance")
-    public String submitInsuranceInfo(@ModelAttribute Insurance insurance, Model model) {
+    public String submitInsuranceInfo(@ModelAttribute Insurance newInsurance, Model model, @PathVariable long id) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         model.addAttribute("user", user);
 
-        if (insurance.getQ4() == 2) {
-            insurance.setQ5(99);
-            insurance.setQ6(9);
-            insurance.setQ7("NA");
+        Insurance existingInsurance = insuranceDao.findByUserId(user.getId());
+
+        if (existingInsurance != null) {
+            // User already has insurance data, update it with the new answers
+            existingInsurance.setQ1(newInsurance.getQ1());
+            existingInsurance.setQ1os(newInsurance.getQ1os());
+            existingInsurance.setQ2(newInsurance.getQ2());
+            existingInsurance.setQ2os(newInsurance.getQ2os());
+            existingInsurance.setQ3(newInsurance.getQ3());
+            existingInsurance.setQ4(newInsurance.getQ4());
+            existingInsurance.setQ5(newInsurance.getQ5());
+            existingInsurance.setQ5os(newInsurance.getQ5os());
+            existingInsurance.setQ6(newInsurance.getQ6());
+            existingInsurance.setQ6os(newInsurance.getQ6os());
+            existingInsurance.setQ7(newInsurance.getQ7());
+
+            if (existingInsurance.getQ4() == 2) {
+                existingInsurance.setQ5(99);
+                existingInsurance.setQ6(9);
+                existingInsurance.setQ7("NA");
+            }
+
+            // Update the existing insurance object
+            insuranceDao.save(existingInsurance);
+
+        } else {
+            // Create a new Insurance object and save it
+            newInsurance.setUser(user);
+
+            if (newInsurance.getQ4() == 2) {
+                newInsurance.setQ5(99);
+                newInsurance.setQ6(9);
+                newInsurance.setQ7("NA");
+            }
+
+            insuranceDao.save(newInsurance);
         }
-
-        insurance.setUser(user);
-
-        System.out.println("******* AFTER *********");
-        System.out.println(user);
-        System.out.println("***********************");
-
-        insuranceDao.save(insurance);
 
         return "redirect:/user";
     }

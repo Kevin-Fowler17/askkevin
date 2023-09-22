@@ -1,9 +1,17 @@
 // Wait for the DOM to be fully loaded before running
 document.addEventListener("DOMContentLoaded", function () {
-    // Initially hide questions
-    document.getElementById("q5").style.display = "none";
-    document.getElementById("q6").style.display = "none";
-    document.getElementById("q7").style.display = "none";
+
+    // Retrieve the value of insurance.q4 from your HTML
+    let insuranceQ4Value = parseInt([[${insurance.q4}]]);
+
+    // Check if insuranceQ4Value is not equal to 1
+    if (insuranceQ4Value !== 1) {
+        // Initially hide questions
+        document.getElementById("q5").style.display = "none";
+        document.getElementById("q6").style.display = "none";
+        document.getElementById("q7").style.display = "none";
+    }
+
 });
 
 // Function to show/hide the questions based on q4
