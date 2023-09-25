@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @AllArgsConstructor
 @Controller
-public class ConditionsController {
+public class SurgeryController {
 
     private final UserRepository userDao;
 
-    @GetMapping("/user/{id}/conditions")
+    @GetMapping("/user/{id}/surgeries")
     @Transactional
-    public String showConditionsForm(@PathVariable long id, Model model) {
+    public String showSurgeriesForm(@PathVariable long id, Model model) {
 
         User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -28,7 +28,7 @@ public class ConditionsController {
 
         User user = userDao.getReferenceById(loggedInUser.getId());
 
-        return "users/conditions";
+        return "users/surgeries";
     }
 
 }
