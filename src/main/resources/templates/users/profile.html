@@ -10,11 +10,38 @@
 
 <h1>Profile Page</h1>
 
-<a class="nav-link active" th:href="'/user/' + @{${user.id} + '/insurance'}">Insurance</a>
-<a class="nav-link active" th:href="'/user/' + @{${user.id} + '/doctors'}">Doctors</a>
+<div id="insurance">
+  <a class="nav-link active" th:href="'/user/' + @{${user.id} + '/insurance'}">Insurance</a>
+  <div id="primary">
+    <h5>Primary</h5>
+    <p>Company: <span th:text="${insurance.q1}"></span></p>
+    <p>Type: <span th:text="${insurance.q2}"></span></p>
+    <p>ID: <span th:text="${insurance.q3}"></span></p>
+  </div>
+  <div id="secondary-insurance" th:if="${insurance.q4 == 1}">
+    <h6>Secondary</h6>
+    <p>Company: <span th:text="${insurance.q5}"></span></p>
+    <p>Type: <span th:text="${insurance.q6}"></span></p>
+    <p>ID: <span th:text="${insurance.q7}"></span></p>
+  </div>
+</div>
+
+<div id="doctors">
+  <a class="nav-link active" th:href="'/user/' + @{${user.id} + '/doctors'}">Doctors</a>
+</div>
+
+<div id="prescriptions">
 <a class="nav-link active" th:href="'/user/' + @{${user.id} + '/prescriptions'}">Prescriptions</a>
+</div>
+
+<div id="conditions">
 <a class="nav-link active" th:href="'/user/' + @{${user.id} + '/conditions'}">Conditions</a>
+</div>
+
+<div id="surgeries">
 <a class="nav-link active" th:href="'/user/' + @{${user.id} + '/surgeries'}">Surgeries</a>
+</div>
+
 
 <footer th:replace="partials/partials.html :: footer" />
 
