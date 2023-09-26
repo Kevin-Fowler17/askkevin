@@ -17,7 +17,7 @@ public class Insurance {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(nullable = false, columnDefinition = "INT(10)")
+    @Column(nullable = false, columnDefinition = "INT(10) UNSIGNED")
     private long q1;
 
     @Column(nullable = true)
@@ -54,8 +54,8 @@ public class Insurance {
     @JoinColumn (nullable = false, name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "insurance_company_id") // Create a foreign key column in Insurance
+    @OneToOne
+    @JoinColumn(name = "q1", referencedColumnName = "q1_code", insertable = false, updatable = false)
     private InsuranceCompany insuranceCompany;
 
 }

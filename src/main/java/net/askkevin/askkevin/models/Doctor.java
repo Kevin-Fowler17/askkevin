@@ -17,4 +17,8 @@ public class Doctor {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
+    @OneToOne
+    @JoinColumn (nullable = false, name = "user_id")
+    private User user;
+
 }
