@@ -10,7 +10,7 @@
 
 <h1>Medical Insurance Page</h1>
 
-<form th:action="@{/user/} + ${id} + @{/insurance}" th:method="insurance" th:object="${insurance}">
+<form th:action="@{/user/} + ${id} + @{/insurance}" th:method="post" th:object="${insurance}">
 
   <div id="q1" class="q1"><!--    insert question here    --></div><br>
   <div id="q2" class="q2"><!--    insert question here    --></div><br>

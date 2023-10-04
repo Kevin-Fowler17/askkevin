@@ -17,10 +17,10 @@ public class Prescription {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String dosage;
 
     @ManyToOne

@@ -54,8 +54,8 @@ public class Insurance {
     @JoinColumn (nullable = false, name = "user_id")
     private User user;
 
-    @OneToOne
-    @JoinColumn(name = "q1", referencedColumnName = "q1_code", insertable = false, updatable = false)
-    private InsuranceCompany insuranceCompany;
+//    @OneToOne
+//    @JoinColumn(name = "q1", referencedColumnName = "q1_code", insertable = false, updatable = false)
+//    private InsuranceCompany insuranceCompany;
 
 }
