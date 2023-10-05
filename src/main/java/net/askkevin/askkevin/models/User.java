@@ -3,6 +3,8 @@ package net.askkevin.askkevin.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,6 +26,12 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Doctor> doctors;
+
+    @OneToMany(mappedBy = "user")
+    private List<Prescription> prescriptions;
 
     public User(User copy) {
         id = copy.id;

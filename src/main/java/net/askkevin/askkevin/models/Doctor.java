@@ -17,7 +17,16 @@ public class Doctor {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @OneToOne
+    @Column(nullable = false, columnDefinition = "INT(10) UNSIGNED")
+    private long type;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String phoneNumber;
+
+    @ManyToOne
     @JoinColumn (nullable = false, name = "user_id")
     private User user;
 
