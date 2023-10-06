@@ -17,22 +17,22 @@ public class Insurance {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @Column(nullable = false, columnDefinition = "INT(10) UNSIGNED")
+    @Column(nullable = true, columnDefinition = "INT(10) UNSIGNED")
     private long q1;
 
     @Column(nullable = true)
     private String q1os;
 
-    @Column(nullable = false, columnDefinition = "INT(10)")
+    @Column(nullable = true, columnDefinition = "INT(10)")
     private long q2;
 
     @Column(nullable = true)
     private String q2os;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String q3;
 
-    @Column(nullable = false, columnDefinition = "INT(10)")
+    @Column(nullable = true, columnDefinition = "INT(10)")
     private long q4;
 
     @Column(nullable = true, columnDefinition = "INT(10)")

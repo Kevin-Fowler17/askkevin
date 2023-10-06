@@ -27,6 +27,9 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
+    @OneToOne(mappedBy = "user")
+    private Insurance insurance;
+
     @OneToMany(mappedBy = "user")
     private List<Doctor> doctors;
 

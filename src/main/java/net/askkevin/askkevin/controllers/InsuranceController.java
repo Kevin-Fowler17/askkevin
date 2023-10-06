@@ -31,14 +31,14 @@ public class InsuranceController {
             return "/user";
         }
 
-//        User user = userDao.getReferenceById(loggedInUser.getId());
+        User user = userDao.getReferenceById(loggedInUser.getId());
 
-//        Insurance currentInsuranceSettings = insuranceDao.findByUserId(user.getId());
+        Insurance currentInsuranceSettings = insuranceDao.findByUserId(user.getId());
 
-//        model.addAttribute("insurance", currentInsuranceSettings);
+        model.addAttribute("insurance", currentInsuranceSettings);
 
         System.out.println("******* curernt *******");
-//        System.out.println(currentInsuranceSettings);
+        System.out.println(currentInsuranceSettings);
         System.out.println("***********************");
 
         return "users/insurance";
