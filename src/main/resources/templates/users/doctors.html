@@ -10,6 +10,30 @@
 
 <h1>Doctors Page</h1>
 
+<div class="prescription">
+
+  <form th:action="@{/user/} + ${id} + @{/doctors}" th:method="post" th:object="${doctors}">
+
+    <div>
+
+    </div>
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input th:field="*{name}" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3">
+      <label for="phone-number" class="form-label">Body</label>
+      <input th:field="*{phoneNumber}" type="text" class="form-control" id="phone-number" >
+    </div>
+
+    <input type="hidden" th:field="*{id}" />
+
+    <input type="submit" id="doctorSubmit" value="Submit">
+
+  </form>
+
+</div>
+
 <footer th:replace="partials/partials.html :: footer" />
 
 </body>
