@@ -10,12 +10,26 @@
 
 <h1>Surgeries Page</h1>
 
-<form action="submit.php" method="post">
-  <label for="date">Select a Date:</label>
-  <input type="date" id="date" name="date" required>
+<div class="surgery">
 
-  <input type="submit" value="Submit">
-</form>
+  <form th:action="@{/user/} + ${id} + @{/surgeries}" th:method="post" th:object="${surgery}">
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Surgery type</label>
+      <input th:field="*{type}" type="text" class="form-control" id="title">
+    </div>
+    <div class="mb-3">
+      <label for="date">Surgery date</label>
+      <input type="date" id="date" name="date" required>
+    </div>
+
+    <input type="hidden" th:field="*{id}" />
+
+    <input type="submit" id="surgerySubmit" value="Submit">
+
+  </form>
+
+</div>
 
 <footer th:replace="partials/partials.html :: footer" />
 
