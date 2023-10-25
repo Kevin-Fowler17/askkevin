@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @AllArgsConstructor
 @Controller
@@ -37,6 +39,21 @@ public class SurgeryController {
         model.addAttribute("surgery", new Surgery());
 
         return "users/surgeries";
+    }
+
+    @PostMapping("/user/{id}/surgeries")
+    public String submitSurgeriesForm(@ModelAttribute Surgery surgery, Model model, @PathVariable long id) {
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        model.addAttribute("user", user);
+
+        surgery.setUser(user);
+
+        surgeryDao.save(surgery);
+
+        return "users/prescriptions";
+
     }
 
 }
