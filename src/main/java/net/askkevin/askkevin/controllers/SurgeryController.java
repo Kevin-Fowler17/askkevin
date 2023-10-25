@@ -1,10 +1,8 @@
 package net.askkevin.askkevin.controllers;
 
 import lombok.AllArgsConstructor;
-import net.askkevin.askkevin.models.Prescription;
 import net.askkevin.askkevin.models.Surgery;
 import net.askkevin.askkevin.models.User;
-import net.askkevin.askkevin.repositories.PrescriptionRepository;
 import net.askkevin.askkevin.repositories.SurgeryRepository;
 import net.askkevin.askkevin.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;

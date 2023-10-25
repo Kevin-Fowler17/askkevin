@@ -15,12 +15,12 @@
   <form th:action="@{/user/} + ${id} + @{/surgeries}" th:method="post" th:object="${surgery}">
 
     <div class="mb-3">
-      <label for="title" class="form-label">Surgery type</label>
-      <input th:field="*{type}" type="text" class="form-control" id="title">
+      <label for="type" class="form-label">Surgery type</label>
+      <input th:field="*{type}" type="text" class="form-control" id="type">
     </div>
     <div class="mb-3">
       <label for="date">Surgery date</label>
-      <input type="date" id="date" name="date" required>
+      <input th:field="*{date}" type="date" class="form-control" id="date" required>
     </div>
 
     <input type="hidden" th:field="*{id}" />

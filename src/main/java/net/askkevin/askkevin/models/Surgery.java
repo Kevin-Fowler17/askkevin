@@ -32,6 +32,14 @@ public class Surgery {
     @JoinColumn (nullable = false, name = "user_id")
     private User user;
 
+    public void setDate(String dateString) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("mm/dd/yyyy");
+            Date parsedDate = dateFormat.parse(dateString);
+            this.date = parsedDate;
+        } catch (ParseException e) {
+            // Add any error handling here.
 
-
+        }
+    }
 }

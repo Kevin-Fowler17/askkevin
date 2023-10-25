@@ -15,8 +15,8 @@
   <form th:action="@{/user/} + ${id} + @{/prescriptions}" th:method="post" th:object="${prescription}">
 
     <div class="mb-3">
-      <label for="title" class="form-label">Title</label>
-      <input th:field="*{name}" type="text" class="form-control" id="title">
+      <label for="name" class="form-label">Title</label>
+      <input th:field="*{name}" type="text" class="form-control" id="name">
     </div>
     <div class="mb-3">
       <label for="dosage" class="form-label">Body</label>
