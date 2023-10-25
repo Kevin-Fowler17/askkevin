@@ -3,6 +3,10 @@ package net.askkevin.askkevin.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,8 +21,17 @@ public class Surgery {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
-    @OneToOne
+    @Column(nullable = false)
+    private String type;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    private Date date;
+
+    @ManyToOne
     @JoinColumn (nullable = false, name = "user_id")
     private User user;
+
+
 
 }
