@@ -15,7 +15,7 @@
   <form th:action="@{/user/} + ${id} + @{/conditions}" th:method="post" th:object="${condition}">
 
     <div class="mb-3">
-      <label for="condition" class="form-label">Surgery type</label>
+      <label for="condition" class="form-label">Condition</label>
       <input th:field="*{condition}" type="text" class="form-control" id="condition">
     </div>
 
