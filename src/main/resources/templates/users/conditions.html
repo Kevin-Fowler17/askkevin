@@ -10,6 +10,21 @@
 
 <h1>Conditions Page</h1>
 
+<div class="condition">
+
+  <form th:action="@{/user/} + ${id} + @{/conditions}" th:method="post" th:object="${condition}">
+
+    <div class="mb-3">
+      <label for="condition" class="form-label">Surgery type</label>
+      <input th:field="*{condition}" type="text" class="form-control" id="condition">
+    </div>
+
+    <input type="hidden" th:field="*{id}" />
+
+    <input type="submit" id="conditionSubmit" value="Submit">
+
+  </form>
+
 <footer th:replace="partials/partials.html :: footer" />
 
 </body>

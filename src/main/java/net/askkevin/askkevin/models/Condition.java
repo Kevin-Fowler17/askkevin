@@ -17,6 +17,9 @@ public class Condition {
     @Column(columnDefinition = "INT(10) UNSIGNED")
     private long id;
 
+    @Column(nullable = false)
+    private String condition;
+
     @OneToOne
     @JoinColumn (nullable = false, name = "user_id")
     private User user;
